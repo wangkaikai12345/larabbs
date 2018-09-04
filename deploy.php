@@ -23,11 +23,9 @@ add('writable_dirs', []);
 // Hosts
 
 host('132.232.36.212')
-    ->user('root') // 这里填写 deployer
-    // 并指定公钥的位置
-    ->identityFile('~/.ssh/id_rsa.pub')
-    // 指定项目部署到服务器上的哪个目录
-    ->set('deploy_path', '/var/www/larabbs');
+    ->user('root')
+    ->set('deploy_path', '/var/www/{{application}}')
+    ->set('branch', 'master');
 
 // Tasks
 
