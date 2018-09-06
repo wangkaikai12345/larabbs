@@ -26,12 +26,21 @@ set('writable_use_sudo', false);
 
 // Hosts
 
-host('39.107.77.158')
+//host('39.107.77.158')
+//    ->user('deployer')
+//    ->identityFile('~/.ssh/deployerkey')
+//    ->set('deploy_path', '/var/www/{{application}}')
+//    ->set('branch', 'master');
+
+host('132.232.36.212')
     ->user('root')
     ->set('deploy_path', '/var/www/{{application}}')
     ->set('branch', 'master');
 
 // Tasks
+task('artisan:config:cache', function () {
+    return true;
+});
 
 task('build', function () {
     run('cd {{release_path}} && build');
