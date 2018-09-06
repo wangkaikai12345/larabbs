@@ -20,10 +20,13 @@ add('shared_dirs', []);
 add('writable_dirs', []);
 set('allow_anonymous_stats', false);
 
+// 实践证明，这样能减少一些不必要的麻烦,如出现权限相关的问题，也可将此项设置为 true 后尝试
+set('writable_use_sudo', false);
+
 
 // Hosts
 
-host('132.232.36.212')
+host('39.107.77.158')
     ->user('root')
     ->set('deploy_path', '/var/www/{{application}}')
     ->set('branch', 'master');
