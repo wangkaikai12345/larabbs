@@ -18,6 +18,7 @@ add('shared_dirs', []);
 
 // Writable dirs by web server 
 add('writable_dirs', []);
+set('allow_anonymous_stats', false);
 
 
 // Hosts
@@ -38,5 +39,6 @@ after('deploy:failed', 'deploy:unlock');
 
 // Migrate database before symlink new release.
 
-before('deploy:symlink', '');
+before('deploy:symlink', 'artisan:optimize');
+//after('artisan:optimize', 'artisan:migrate');
 
