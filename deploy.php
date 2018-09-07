@@ -42,15 +42,22 @@ task('artisan:config:cache', function () {
     return true;
 });
 
+// 自定义任务：重启 php-fpm 服务
+//task('php-fpm:restart', function () {
+//    run('systemctl restart php-fpm.service');
+//});
+
 task('build', function () {
     run('cd {{release_path}} && build');
 });
+
+//before('deploy:symlink', 'php-fpm:restart');
 
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
 // Migrate database before symlink new release.
 
-before('deploy:symlink', 'artisan:optimize');
+
 //after('artisan:optimize', 'artisan:migrate');
 
